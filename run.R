@@ -1,4 +1,10 @@
 source('data_trend_pred.R')
+testit <- function(x)
+{
+  p1 <- proc.time()
+  Sys.sleep(x)
+  proc.time() - p1 # The cpu usage should be negligible
+}
 
 train <- getdata("product_distribution_training_set.txt")
 
@@ -14,10 +20,4 @@ result<- matrix(NA, nrow=28, ncol=101)
 }
 output<-get_final(result, key_id, nrow=101, ncol=29)
 write.table(output, "output.txt", row.names=FALSE, col.names=FALSE)
-testit <- function(x)
-{
-  p1 <- proc.time()
-  Sys.sleep(x)
-  proc.time() - p1 # The cpu usage should be negligible
-}
 
